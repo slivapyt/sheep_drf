@@ -3,4 +3,18 @@
     "terminal.integrated.env.linux": {
         "PYTHONPATH": "${workspaceFolder}"
     },
+    "sqltools.connections": [
+        {
+            "server": "sheep_drf_db",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "sheep_drf_db",
+            "database": "sheep_drf_db",
+            "username": "sheep_drf_db_user",
+            "password": "g0a43jgafjgasdfhij63"
+        }
+    ],
+    "cSpell.words": [
+        "BAAIBF"
+    ]
 }

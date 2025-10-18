@@ -1,11 +1,29 @@
+// {
+//     "configurations": [
+//         {
+//             "name": "Run project",
+//             "type": "debugpy",
+//             "request": "launch",
+//             "program": "${workspaceFolder}/some_main.py",
+//             "console": "integratedTerminal",
+//             "cwd": "${workspaceFolder}"
+//         }
+//     ]
+// }
 {
+    "version": "0.2.0",
     "configurations": [
         {
-            "name": "Run project",
+            "name": "Run Django DRF",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/some_main.py",
+            "program": "${workspaceFolder}/manage.py",
             "console": "integratedTerminal",
+            "args": [
+                "runserver",
+                "0.0.0.0:8000"
+            ],
+            "django": true,
             "cwd": "${workspaceFolder}"
         }
     ]

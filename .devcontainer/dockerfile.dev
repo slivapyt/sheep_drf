@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /test_base_proj
+WORKDIR /sheep_drf
 
 COPY ../requirements/ ./requirements/
 RUN pip install --no-cache-dir --upgrade pip
@@ -24,7 +24,7 @@ RUN chmod 600 /root/.ssh/*
 
 COPY .. .
 
-ENV PYTHONPATH="/test_base_proj"
+ENV PYTHONPATH="/sheep_drf"
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
@@ -42,6 +42,6 @@ RUN mkdir -p /root/.config && \
     echo '[python]' >> /root/.config/starship.toml && \
     echo 'disabled = true' >> /root/.config/starship.toml
 
-RUN git config --global user.name "Roman" && \
-    git config --global user.email "lackroy5111@gmail.com"
+RUN git config --global user.name "slivapyt" && \
+    git config --global user.email "faer2325@gmail.com"
 

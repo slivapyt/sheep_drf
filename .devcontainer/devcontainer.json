@@ -1,12 +1,16 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-docker-compose
 {
-	"name": "<my_project_name>",
+	"name": "sheep_drf",
 	"dockerComposeFile": [
 		"docker-compose.dev.yml"
 	],
-	"service": "<my_project_name>",
-	"workspaceFolder": "/<my_project_name>",
+	"service": "sheep_drf",
+	"workspaceFolder": "/sheep_drf",
+	"overrideCommand": false,	
+	"remoteUser": "root",
+	"dockerPath": "/usr/bin/docker",
+	"dockerHost": "unix:///var/run/docker.sock",
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -51,7 +55,12 @@
 				"peakchen90.open-html-in-browser",
 				"syler.sass-indented",
 				"Supermaven.supermaven"
-			]
+			],
+			"settings": {
+				"remote.containers.user": "root",
+				"extensions.autoUpdate": false,
+				"remote.restoreForwardedPorts": true
+			}
 		}
 	}
 }

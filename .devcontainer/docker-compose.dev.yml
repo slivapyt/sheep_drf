@@ -1,11 +1,33 @@
 services:
-  <my_project_name>:
-    container_name: <my_project_name>
+  sheep_drf:
+    depends_on:
+      - sheep_drf_db
+    container_name: sheep_drf
     build:
       context: ..
       dockerfile: .devcontainer/dockerfile.dev
+    ports:
+      - "4202:4200"
     command: tail -f /dev/null
     volumes:
-      - ..:/<my_project_name>
+      - ..:/sheep_drf
     env_file:
       - ../.env
+
+  sheep_drf_db:
+    image: postgres:16
+    env_file:
+      - ../.env
+    ports:
+      - "5441:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  redis:
+    image: redis:7
+    container_name: drf_redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  pg_data:
+  vscode-extensions:
