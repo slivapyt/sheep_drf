@@ -9,13 +9,13 @@ from rest_framework.request import Request
 
 from django.contrib.auth import login
 
-from accounts.models import User
-from accounts.serializers import (
+from .models import User
+from .serializers import (
     UserRegistrationSerializer,
     UserProfileSerializer,
     UserLoginSerializer,
     UserUpdateSerializers,
-    ChangePasswordSerializer,
+    ChangePasswordSerializers,
 )
 
 
@@ -26,10 +26,16 @@ class RegisterView(generics.CreateAPIView):
 
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(rise_exception=True)
+        serializer.is_valid(raise_exception=True)
         user = serializer.save()
 
         refresh = RefreshToken.for_user(user)
+        # try:
+        #     serialized_user = UserProfileSerializer(user)
+        #     print("Serialized user data:", serialized_user.data)  # Для отладки
+        # except Exception as e:
+        #     print("Error in UserProfileSerializer:", str(e))  # Для отладки
+        #     raise
 
         return Response(
             {
@@ -80,7 +86,7 @@ class ProfileView(generics.RetrieveUpdateAPIView):
 
 
 class ChangePasswordView(generics.UpdateAPIView):
-    serializer_class = ChangePasswordSerializer
+    serializer_class = ChangePasswordSerializers
     permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self) -> User:

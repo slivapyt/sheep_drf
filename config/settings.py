@@ -26,12 +26,11 @@ load_dotenv(dotenv_path=dot_env)
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (os.getenv("SECRET_KEY", ""),)
-
+SECRET_KEY = os.getenv("SECRET_KEY", "")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config(
     "DEBUG",
-    default=False,
+    default=True,
     cast=bool,
 )
 
@@ -106,10 +105,11 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
@@ -117,6 +117,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = "config.wsgi.application"
 

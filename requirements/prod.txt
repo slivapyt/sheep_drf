@@ -1,10 +1,10 @@
 Django==5.2
-djangorestframework==3.15.0
+djangorestframework==3.16.1
+djangorestframework_simplejwt==5.5.1
 psycopg2-binary==2.9.10       # драйвер PostgreSQL
 django-redis==5.0.0            # кеширование через Redis
 django-filter==23.1             # фильтры DRF
 django-cors-headers==4.0.0     # CORS для фронтенда
-djangorestframework-simplejwt==5.3.1  # JWT аутентификация
 PyJWT==2.10.1
 celery==5.3.0                   # асинхронные задачи
 redis==6.0.0                     # клиент Redis
@@ -15,4 +15,5 @@ pytz==2025.2                     # временные зоны
 tzdata==2025.2
 sqlparse==0.5.3                  # DRF / Django SQL парсер
 python-decouple==3.8
-pillow-12.0.0
+Pillow==10.4.0
+

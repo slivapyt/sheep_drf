@@ -2,15 +2,16 @@ from typing import Any, Dict
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
-from django.utils.html import escape
-from models import User
+
+from accounts.models import User
 
 # from models import Accounts
+# from django.utils.html import escape
 
 
-class UserRegistrationSerializer:
+class UserRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
-        models = User
+        model = User
         fields = (
             "username",
             "email",
@@ -80,22 +81,28 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "full_name",
             "avatar",
             "bio",
-            "created_at",
-            "updated_at",
+            "create_at",
+            "update_at",
             "posts_count",
             "comments_count",
         )
-        read_only_fields = ("id", "created_at", "updated_at")
+        read_only_fields = ("id", "create_at", "update_at")
 
     full_name = serializers.ReadOnlyField()
     posts_count = serializers.SerializerMethodField()
     comments_count = serializers.SerializerMethodField()
 
     def get_posts_count(self, obj: User) -> int:
-        return obj.posts.count()
+        try:
+            return obj.posts.count()
+        except AttributeError:
+            return 0
 
     def get_comments_count(self, obj: User) -> int:
-        return obj.comments.count()
+        try:
+            return obj.comments.count()
+        except AttributeError:
+            return 0
 
 
 class UserUpdateSerializers(serializers.ModelSerializer):
@@ -111,7 +118,7 @@ class UserUpdateSerializers(serializers.ModelSerializer):
         return instance
 
 
-class ChangePasswordSerializer(serializers.Serializer):
+class ChangePasswordSerializers(serializers.Serializer):
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(
         required=True,
