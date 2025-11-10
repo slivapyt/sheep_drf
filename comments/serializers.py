@@ -1,7 +1,8 @@
 from typing import Any, List
 from rest_framework import serializers
+
+from main.models import Post
 from .models import Comment
-from .models import Post
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -47,10 +48,13 @@ class CommentCreateSerializer(serializers.ModelSerializer):
         return value
 
     def validate_parent(self, value: Any) -> Any:
-        if value and value.post != self.initial_data.get("post"):
-            raise serializers.ValidationError(
-                "Parent comment must belong to the same post.",
-            )
+        if value:
+            post_data = self.initial_data.get("post")
+            if post_data:
+                if value.post.id != int(post_data):
+                    raise serializers.ValidationError(
+                        "Parent comment must belong to the same post",
+                    )
 
         return value
 

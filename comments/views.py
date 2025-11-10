@@ -106,21 +106,18 @@ def comment_replies(request: Request, comment_id: int) -> Response:
     parent_comment = get_object_or_404(Comment, id=comment_id, is_active=True)
 
     replies = (
-        Comment.objects.filter(
-            parent=parent_comment,
-            is_active=True,
-        )
+        Comment.objects.filter(parent=parent_comment, is_active=True)
         .select_related("author")
         .order_by("created_at")
     )
+
     serializer = CommentSerializer(replies, many=True, context={"request": request})
     return Response(
         {
             "parent_comment": CommentSerializer(
                 parent_comment,
-                many=True,
                 context={"request": request},
-            ),
+            ).data,
             "replies": serializer.data,
             "replies_count": replies.count(),
         },
