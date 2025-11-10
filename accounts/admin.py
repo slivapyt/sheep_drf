@@ -11,11 +11,11 @@ class UserAdmin(BaseUserAdmin):
         "first_name",
         "last_name",
         "is_active",
-        "create_at",
+        "created_at",
     )
-    list_filter = ("is_active", "is_staff", "is_superuser", "create_at")
+    list_filter = ("is_active", "is_staff", "is_superuser", "created_at")
     search_fields = ("email", "username", "first_name", "last_name")
-    ordering = ("-create_at",)
+    ordering = ("-created_at",)
 
     fieldsets = (
         (None, {"fields": ("email", "username", "password")}),
@@ -34,7 +34,7 @@ class UserAdmin(BaseUserAdmin):
         ),
         (
             "Important dates",
-            {"fields": ("last_login", "date_joined", "create_at", "update_at")},
+            {"fields": ("last_login", "date_joined", "created_at", "updated_at")},
         ),
     )
 
@@ -48,4 +48,4 @@ class UserAdmin(BaseUserAdmin):
         ),
     )
 
-    readonly_fields = ("create_at", "update_at")
+    readonly_fields = ("created_at", "updated_at")

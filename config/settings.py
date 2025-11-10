@@ -60,6 +60,8 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "app_sheep",
     "accounts",
+    "main",
+    "comments",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

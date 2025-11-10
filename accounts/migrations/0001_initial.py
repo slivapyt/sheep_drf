@@ -79,8 +79,8 @@ class Migration(migrations.Migration):
                     models.ImageField(blank=True, null=True, upload_to="avatars/"),
                 ),
                 ("bio", models.TextField(blank=True, max_length=500)),
-                ("create_at", models.DateTimeField(auto_now=True)),
-                ("update_at", models.DateTimeField(auto_now=True)),
+                ("created_at", models.DateTimeField(auto_now=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
                 ("is_active", models.BooleanField(default=True)),
                 (
                     "groups",

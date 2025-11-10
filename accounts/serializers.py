@@ -81,12 +81,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "full_name",
             "avatar",
             "bio",
-            "create_at",
-            "update_at",
+            "created_at",
+            "updated_at",
             "posts_count",
             "comments_count",
         )
-        read_only_fields = ("id", "create_at", "update_at")
+        read_only_fields = ("id", "created_at", "updated_at")
 
     full_name = serializers.ReadOnlyField()
     posts_count = serializers.SerializerMethodField()
@@ -152,7 +152,7 @@ class ChangePasswordSerializers(serializers.Serializer):
 #     class Meta:
 #         models = Accounts
 #         fields = ["id", "title", "content", "created_at", "updated_at"]
-#         read_only_fields = ["id", "create_at", "update_at"]
+#         read_only_fields = ["id", "created_at", "updated_at"]
 
 #     def validate_title(self, value: str) -> str:
 #         if not value.strip():

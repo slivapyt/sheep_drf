@@ -7,7 +7,7 @@ from django.contrib.auth.models import AbstractUser
 #     class Meta:
 #         verbose_name = "Заметка"
 #         verbose_name_plural = "Заметки"
-#         ordering = ["-create_at"]
+#         ordering = ["-created_at"]
 
 #     title = models.CharField(
 #         max_length=200,
@@ -19,11 +19,11 @@ from django.contrib.auth.models import AbstractUser
 #         verbose_name="Содержание",
 #         help_text="введите содержание заметки",
 #     )
-#     create_at = models.DateTimeField(
+#     created_at = models.DateTimeField(
 #         auto_now_add=True,
 #         verbose_name="Дата создания",
 #     )
-#     update_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
+#     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
 
 #     def __str__(self) -> str:
 #         return self.title[:50]
@@ -43,8 +43,8 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=30, blank=True)
     avatar = models.ImageField(upload_to="avatars/", blank=True, null=True)
     bio = models.TextField(max_length=500, blank=True)
-    create_at = models.DateTimeField(auto_now=True)
-    update_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self) -> str:
